@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "nutri-sync": {
+      "command": "node",
+      "args": ["mcp-server/server.mjs", "nutri-sync-data.json"],
+      "env": {}
+    }
+  }
+}
