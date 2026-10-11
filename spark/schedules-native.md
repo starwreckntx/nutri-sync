@@ -79,6 +79,6 @@ no local Node.js daemon, no MCP pipe, no machine that needs to stay awake. Stora
 | Weekly Review | `spark/schedules.md` · Doc via MCP context | Schedule 4 · Doc via Sheet rows |
 | Meal-Prep Planner | `spark/schedules.md` · Gmail + Calendar | Schedule 5 · identical, Sheet-fed |
 
-Both modes are valid; Mode B trades the local file pipe for 24/7 cloud autonomy. Pick one per
-schedule to avoid duplicate briefings — or run Mode B everywhere and keep the MCP server as the
-app-side sync bridge.
+Both modes are valid; **Mode B is the default** — it trades the local file pipe for 24/7 cloud
+autonomy. Pick one per schedule to avoid duplicate briefings — or, as the default setup, run
+Mode B everywhere and keep the MCP server as the app-side sync bridge.
