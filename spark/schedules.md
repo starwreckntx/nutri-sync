@@ -1,5 +1,11 @@
 # NutriSync Spark Schedules
 
+> **Mode A (optional — MCP pipe).** The blocks below are the MCP-server variants. The **default
+> runtime is Mode B: native cloud** — see `schedules-native.md` for the paste-ready blocks that
+> run on the `NutriSync Tracker` Google Sheet with zero local dependencies. Use this file only
+> when you deliberately want Spark to read and write through the local MCP server
+> (`mcp-server/server.mjs`).
+
 Paste-ready Task + Schedule blocks for Gemini Spark. Each block is written so you can copy it
 into Spark nearly verbatim; Spark will create the Task, attach the named Skill, and set the
 trigger. Adjust times to your day.

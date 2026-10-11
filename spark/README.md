@@ -27,18 +27,19 @@ instructions, and vice versa.
 |---|---|---|
 | Coach Skill | `skills/nutrisync-coach/SKILL.md` | Grounded answers + weekly reviews from your real data |
 | Scribe Skill | `skills/nutrisync-scribe/SKILL.md` | Natural-language meal logging through Spark |
-| Schedules (MCP mode) | `schedules.md` | Paste-ready daily / weekly / monitor triggers |
-| Schedules (native cloud) | `schedules-native.md` | Same triggers, zero-dependency Workspace primitives |
+| Schedules (native cloud, default) | `schedules-native.md` | Same triggers, zero-dependency Workspace primitives |
+| Schedules (MCP mode, optional) | `schedules.md` | Paste-ready daily / weekly / monitor triggers |
 | Sheet templates | `templates/` | `NutriSync Tracker` schema + starter CSV for native mode |
 | MCP wiring | `../mcp-server/server.mjs` | The two-way data pipe Spark reads and writes |
 | Android playbook | `android.md` | Phone-side integrations, notifications, safety |
 
 ## Two runtimes, one skill set
 
-The skills and schedules are **dual-mode**. Choose per workflow — or run native cloud everywhere
-and keep the MCP server as the app-side sync bridge.
+The skills and schedules are **dual-mode**, and **Mode B (native cloud) is the default**: it needs
+no local process and runs 24/7 in Spark's cloud. Mode A remains available for users who want the
+local MCP pipe — or keep the MCP server as the app-side sync bridge while Spark runs native.
 
-| Feature | Mode A: Local MCP Pipe | Mode B: Native Cloud (Zero-Dep) |
+| Feature | Mode A: Local MCP Pipe | Mode B: Native Cloud (Zero-Dep) ✅ default |
 |---|---|---|
 | Storage | Local `nutri-sync-data.json` | Cloud Google Sheet (`NutriSync Tracker`) |
 | Runtime requirements | Node.js host process (`server.mjs`) | None (native Gemini Workspace tools) |
