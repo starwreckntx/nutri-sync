@@ -27,9 +27,28 @@ instructions, and vice versa.
 |---|---|---|
 | Coach Skill | `skills/nutrisync-coach/SKILL.md` | Grounded answers + weekly reviews from your real data |
 | Scribe Skill | `skills/nutrisync-scribe/SKILL.md` | Natural-language meal logging through Spark |
-| Schedules | `schedules.md` | Paste-ready daily / weekly / monitor triggers |
+| Schedules (MCP mode) | `schedules.md` | Paste-ready daily / weekly / monitor triggers |
+| Schedules (native cloud) | `schedules-native.md` | Same triggers, zero-dependency Workspace primitives |
+| Sheet templates | `templates/` | `NutriSync Tracker` schema + starter CSV for native mode |
 | MCP wiring | `../mcp-server/server.mjs` | The two-way data pipe Spark reads and writes |
 | Android playbook | `android.md` | Phone-side integrations, notifications, safety |
+
+## Two runtimes, one skill set
+
+The skills and schedules are **dual-mode**. Choose per workflow — or run native cloud everywhere
+and keep the MCP server as the app-side sync bridge.
+
+| Feature | Mode A: Local MCP Pipe | Mode B: Native Cloud (Zero-Dep) |
+|---|---|---|
+| Storage | Local `nutri-sync-data.json` | Cloud Google Sheet (`NutriSync Tracker`) |
+| Runtime requirements | Node.js host process (`server.mjs`) | None (native Gemini Workspace tools) |
+| Uptime / availability | Machine must be awake | 24/7 autonomous cloud availability |
+| Phone voice logging | Calls local MCP pipe via bridge | Calls Google Sheets append directly |
+| Setup time | ~10 mins (config, stdio, tokens) | ~2 mins (create Sheet from `templates/`, upload Skills) |
+
+Mode B setup: create a Sheet named **NutriSync Tracker** with the three tabs defined in
+`templates/sheets-schema.json` (or import `templates/nutrisync-tracker-template.csv`), upload the
+two Skills, then paste the blocks from `schedules-native.md`.
 
 ## Setup (10 minutes)
 
@@ -45,7 +64,7 @@ instructions, and vice versa.
 ## Operating rules (baked into every Skill)
 
 - Spark may **read** freely; it must **ask before writing** anything consequential.
-- Numbers come from the MCP tools only — never invented.
+- Numbers come from the connected data source only (MCP tools or the NutriSync Tracker Sheet) — never invented.
 - Scheduled times are approximate (cloud queue); nothing here is time-critical or safety-critical.
 - No passwords, payment details or sensitive data in Skills or Tasks.
 

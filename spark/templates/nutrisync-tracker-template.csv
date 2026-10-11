@@ -1,0 +1,16 @@
+# tab: Profile & Goals
+Key,Value,Notes
+Current Weight (kg),75.0,Baseline metric
+Target Weight (kg),72.0,Active goal
+Weekly Goal Rate (kg),-0.5,Pace per week
+Daily Calorie Target,2100,Maintenance / deficit budget
+Daily Protein Target (g),150,Target minimum
+Daily Carb Target (g),200,Target budget
+Daily Fat Target (g),65,Target budget
+Dietary Notes,None,"Allergies, dislikes, medical restrictions"
+
+# tab: Daily Log
+Date,Meal Name,Calories,Protein (g),Carbs (g),Fat (g),Source,Notes
+
+# tab: Weight Log
+Date,Weight (kg),7-Day Moving Avg,Notes
