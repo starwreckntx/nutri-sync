@@ -6,6 +6,25 @@ path between you, your data, and the Google ecosystem (including **Gemini Spark*
 
 ![stack](https://img.shields.io/badge/React%2019-TypeScript-blue) ![stack](https://img.shields.io/badge/Vite-Tailwind-38bdf8) ![stack](https://img.shields.io/badge/MCP-Gemini%20Spark-8b5cf6)
 
+## Quickstart — Spark native mode (3 steps, no local runtime)
+
+The default runtime is **zero-dependency cloud mode**: Gemini Spark runs your nutrition loop on
+its own schedule, 24/7, using a Google Sheet as the database. Nothing to install, nothing to keep awake.
+
+1. **Create the tracker.** Make a Google Sheet named **NutriSync Tracker** with the three tabs
+   from [`spark/templates/sheets-schema.json`](spark/templates/sheets-schema.json)
+   (or import [`spark/templates/nutrisync-tracker-template.csv`](spark/templates/nutrisync-tracker-template.csv))
+   and fill in your numbers on the **Profile & Goals** tab.
+2. **Teach Spark.** In Gemini → Skills, upload the two skill files:
+   [`nutrisync-coach`](spark/skills/nutrisync-coach/SKILL.md) and
+   [`nutrisync-scribe`](spark/skills/nutrisync-scribe/SKILL.md).
+3. **Schedule it.** Paste the five blocks from [`spark/schedules-native.md`](spark/schedules-native.md)
+   into Spark — morning briefing, evening check-in, weigh-in monitor, weekly review, meal-prep planner.
+
+Done: Spark briefs you daily, logs meals by voice from Android, reviews your week into a Google
+Doc, and plans your grocery run — all on cloud time. Prefer a local data pipe instead? The MCP
+server mode remains available under [`spark/`](spark/README.md).
+
 ## What it does
 
 - **Dashboard** — calories, protein, macros, water and weight trend at a glance, with 7-day charts.
@@ -29,7 +48,7 @@ path between you, your data, and the Google ecosystem (including **Gemini Spark*
   Protocol (stdio, zero dependencies), so Gemini Spark can act as a Google-ecosystem integrator:
   Spark reads profile/goals/summaries and logs meals back into NutriSync, both directions, no copy-paste.
 
-## Quick start
+## App: local development
 
 ```bash
 npm install
