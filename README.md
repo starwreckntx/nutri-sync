@@ -44,25 +44,45 @@ Then:
 3. **Connectors** → paste a Gemini API key (from [Google AI Studio](https://aistudio.google.com/apikey))
    and optionally deploy the Sheets bridge.
 
-## Gemini Spark integration
+## Gemini Spark integration — a Spark-native runtime
 
-Gemini Spark is Google's always-on agent with native Google Workspace access and third-party connectivity
-via MCP. NutriSync is Spark-ready:
+Gemini Spark is Google's always-on agent with native Google Workspace access, scheduled tasks,
+teachable skills and third-party connectivity via MCP. NutriSync ships everything Spark needs
+to **be** the nutrition runtime — Spark supplies the scheduling engine, Google access and
+Android presence; the repo supplies the Skills, Schedules and data pipe:
+
+```
+spark/
+  skills/nutrisync-coach/SKILL.md    → grounded answers & reviews from your real data
+  skills/nutrisync-scribe/SKILL.md   → voice-first natural-language meal logging
+  schedules.md                       → paste-ready daily / weekly / monitor triggers
+  android.md                         → notifications, voice logging, Health Connect, safety
+mcp-server/server.mjs                → the two-way MCP data pipe (zero dependencies)
+```
+
+| Spark layer | NutriSync piece |
+|---|---|
+| **Schedules** (time-based, Gmail-triggered, monitors) | `spark/schedules.md` — morning briefing, evening check-in, weekly review, meal-prep planner, weigh-in monitor |
+| **Skills** (reusable instructions) | `spark/skills/*` — coach persona with strict no-invented-data guardrails; scribe for 5-second logging |
+| **Google access** (Workspace, cloud runs) | Briefings to Docs, shopping lists via Gmail, prep blocks in Calendar |
+| **Android integrations** | Spark notifications, Gemini voice logging via the scribe skill, Health Connect / Google Fit inbound — see `spark/android.md` |
+
+### MCP data pipe (works with any MCP client)
 
 ```bash
 node mcp-server/server.mjs nutri-sync-data.json
 ```
 
-Point your MCP client at it (see `spark-config.example.json` for Gemini CLI / Spark-style config).
-Export a JSON backup from the app and pass it as the data file — the schema is identical.
+Point your MCP client at it (see `spark-config.example.json`). Export a JSON backup from the
+app and pass it as the data file — the schema is identical.
 
 | Direction | Tool | What Spark can do |
 |---|---|---|
 | → Spark | `get_profile`, `get_goals`, `get_today_summary`, `get_context` | Read metrics & goals for grounded answers |
 | Spark → | `log_meal`, `log_weight` | Write meals and weigh-ins back into NutriSync |
 
-Every MCP write lands in the sync log with the connector name `MCP / Gemini Spark`, so the two-way path is
-always auditable.
+Every MCP write lands in the sync log with the connector name `MCP / Gemini Spark`, so the
+two-way path is always auditable.
 
 ## How the two-way sync engine works
 

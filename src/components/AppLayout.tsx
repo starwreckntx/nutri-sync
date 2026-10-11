@@ -37,10 +37,11 @@ export default function AppLayout() {
             ))}
           </nav>
           <div className="mt-auto rounded-md border p-3 text-xs text-muted-foreground">
-            <p className="font-medium text-foreground">Gemini Spark ready</p>
+            <p className="font-medium text-foreground">Spark-native runtime</p>
             <p className="mt-1">
-              Ships with an MCP server in <code className="text-primary">/mcp-server</code> — Spark can read your
-              metrics and log meals both ways.
+              Skills, schedules and an MCP server ship in <code className="text-primary">/spark</code> and{' '}
+              <code className="text-primary">/mcp-server</code> — Gemini Spark runs your nutrition
+              loop on its cloud schedule, with Android voice logging both ways.
             </p>
           </div>
         </aside>
