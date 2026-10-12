@@ -14,7 +14,7 @@ import {
 } from '@/lib/sync'
 import { todayKey } from '@/lib/metrics'
 import { toast } from 'sonner'
-import { ArrowDownToLine, ArrowUpFromLine, RefreshCw, Settings2, CheckCircle2, Circle, PlugZap } from 'lucide-react'
+import { ArrowDownToLine, ArrowUpFromLine, RefreshCw, Settings2, CheckCircle2, Circle, PlugZap, Sparkles } from 'lucide-react'
 
 export default function Connectors() {
   const connectors = useAppState((s) => s.connectors)
@@ -150,6 +150,50 @@ export default function Connectors() {
           with zero copy-paste resistance.
         </p>
       </div>
+
+      <Card className="border-primary/50 bg-primary/5">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between gap-2">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Sparkles className="h-4 w-4 text-primary" /> Spark native mode — default runtime
+            </CardTitle>
+            <Badge variant="default">3 steps · no local runtime</Badge>
+          </div>
+          <CardDescription>
+            The fastest path: Gemini Spark runs your entire nutrition loop on its own cloud schedule —
+            daily briefings, Android voice logging, weekly Doc reviews — using a Google Sheet as the database.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <ol className="grid gap-2 text-sm sm:grid-cols-3">
+            <li className="rounded-md border bg-background p-3">
+              <span className="font-semibold text-primary">1.</span> Create the{' '}
+              <strong>NutriSync Tracker</strong> Google Sheet from{' '}
+              <code className="text-xs">spark/templates/sheets-schema.json</code>
+            </li>
+            <li className="rounded-md border bg-background p-3">
+              <span className="font-semibold text-primary">2.</span> Upload the two skills:{' '}
+              <code className="text-xs">nutrisync-coach</code> + <code className="text-xs">nutrisync-scribe</code>
+            </li>
+            <li className="rounded-md border bg-background p-3">
+              <span className="font-semibold text-primary">3.</span> Paste the five schedules from{' '}
+              <code className="text-xs">spark/schedules-native.md</code>
+            </li>
+          </ol>
+          <div className="flex flex-wrap gap-2">
+            <Button size="sm" asChild>
+              <a href="https://github.com/starwreckntx/nutri-sync#quickstart--spark-native-mode-3-steps-no-local-runtime" target="_blank" rel="noreferrer">
+                Open quickstart on GitHub
+              </a>
+            </Button>
+            <Button size="sm" variant="outline" asChild>
+              <a href="https://github.com/starwreckntx/nutri-sync/tree/main/spark" target="_blank" rel="noreferrer">
+                Browse spark/ runtime
+              </a>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-4 md:grid-cols-2">
         {connectors.map((c) => (
